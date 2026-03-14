@@ -1,246 +1,114 @@
 # CollabNation
 
-## 1. Project Description
+CollabNation is a MERN platform where founders, developers, designers, and marketers can team up to build startups together.
 
-CollabNation is a full-stack web platform that helps entrepreneurs, developers, designers, and innovators collaborate to build startup teams.
+## Stack
 
-The platform allows users to:
-- Share startup ideas
-- Discover projects that need collaborators
-- Apply to join startup teams
-- Connect with people based on skills
+- Frontend: React, React Router, Axios, Vite
+- Backend: Node.js, Express, JWT-ready structure
+- Database: MongoDB with Mongoose
 
-The goal of CollabNation is to make it easier for people with ideas to find the right team and turn those ideas into real startups.
+## Project Structure
 
----
-
-## 2. Features
-
-- User authentication (register & login)
-- User profiles with skills and portfolio
-- Startup idea posting
-- Apply to join startup teams
-- Explore startup ideas
-- Team dashboard for each startup
-- Skill-based filtering
-- Messaging between collaborators
-
----
-
-## 3. Tech Stack
-
-Frontend  
-- React.js  
-- Tailwind CSS  
-- React Router  
-- Axios  
-
-Backend  
-- Node.js  
-- Express.js  
-- JWT Authentication  
-
-Database  
-- MongoDB  
-- Mongoose  
-
----
-
-## 4. Project Structure
-
-```
-collabnation/
-│
-├── client/
-│   ├── components/
-│   ├── pages/
-│   ├── services/
-│   └── App.jsx
-│
-├── server/
-│   ├── controllers/
-│   ├── models/
-│   ├── routes/
-│   ├── middleware/
-│   └── server.js
-│
-└── README.md
+```text
+Collab_Nation/
+|-- client/
+|   |-- src/
+|   |   |-- components/
+|   |   |-- context/
+|   |   |-- pages/
+|   |   |-- services/
+|   |   |-- App.jsx
+|   |   |-- index.css
+|   |   `-- main.jsx
+|   |-- index.html
+|   |-- package.json
+|   `-- vite.config.js
+|-- server/
+|   |-- config/
+|   |   `-- db.js
+|   |-- controllers/
+|   |   |-- healthController.js
+|   |   `-- startupController.js
+|   |-- middleware/
+|   |   `-- errorHandler.js
+|   |-- models/
+|   |   |-- Application.js
+|   |   |-- Message.js
+|   |   |-- Notification.js
+|   |   |-- Startup.js
+|   |   `-- User.js
+|   |-- routes/
+|   |   |-- healthRoutes.js
+|   |   `-- startupRoutes.js
+|   |-- .env.example
+|   |-- package.json
+|   `-- server.js
+|-- .gitignore
+|-- package.json
+`-- README.md
 ```
 
----
+## Included Starter Features
 
-## 5. Prerequisites
+- Express server with CORS, dotenv, JSON parsing, and centralized error handling
+- MongoDB connection helper using Mongoose
+- Sample `User` and `Startup` models plus placeholder collections for `Applications`, `Messages`, and `Notifications`
+- Sample API routes:
+  - `GET /api/health`
+  - `GET /api/startups`
+  - `GET /api/startups/:startupId`
+- React app with routing for:
+  - Home
+  - Explore Startups
+  - Startup Detail
+  - Profile
+  - Dashboard
+  - Login
+  - Register
+- Axios service layer ready for JWT headers
+- Temporary client-side auth context to support the UI until backend auth routes are added
 
-Make sure the following software is installed before running the project:
+## Setup
 
-- Node.js (v18 or higher)
-- npm or yarn
-- MongoDB or MongoDB Atlas
+Install dependencies:
 
----
-
-## 6. Environment Variables
-
-Create a `.env` file inside the **server** folder.
-
-Example:
-
-```
-PORT=5000
-MONGODB_URI=your_mongodb_connection_string
-JWT_SECRET=your_secret_key
-```
-
----
-
-## 7. Installation
-
-Clone the repository:
-
-```
-git clone https://github.com/yourusername/collabnation.git
-cd collabnation
-```
-
-Install backend dependencies:
-
-```
+```bash
 npm install --prefix server
-```
-
-Install frontend dependencies:
-
-```
 npm install --prefix client
 ```
 
----
+Create `server/.env` from `server/.env.example`:
 
-## 8. Run the Project
-
-Start the backend server:
-
+```bash
+PORT=5000
+MONGODB_URI=mongodb://127.0.0.1:27017/collabnation
+JWT_SECRET=replace_with_a_secure_secret
+CLIENT_URL=http://localhost:5173
 ```
+
+## Run
+
+Start the API:
+
+```bash
 npm run dev --prefix server
 ```
 
 Start the frontend:
 
-```
-npm start --prefix client
-```
-
-Application will run on:
-
-Frontend  
-```
-http://localhost:3000
+```bash
+npm run dev --prefix client
 ```
 
-Backend API  
-```
-http://localhost:5000
-```
+Local URLs:
 
----
+- Frontend: `http://localhost:5173`
+- Backend: `http://localhost:5000`
 
-## 9. Scripts
+## Next Suggested Steps
 
-Available project commands:
-
-```
-npm run dev
-npm run start
-npm run build
-```
-
----
-
-## 10. App Routes
-
-Public Routes
-
-```
-/
-login
-register
-explore-startups
-```
-
-User Routes
-
-```
-dashboard
-create-startup
-profile
-applications
-```
-
----
-
-## 11. API Endpoints
-
-Authentication
-
-```
-POST /api/auth/register
-POST /api/auth/login
-```
-
-Users
-
-```
-GET /api/users/:id
-PUT /api/users/:id
-```
-
-Startups
-
-```
-POST /api/startups
-GET /api/startups
-GET /api/startups/:id
-```
-
-Applications
-
-```
-POST /api/apply
-GET /api/applications
-```
-
----
-
-## 12. Security Notes
-
-- Do not commit `.env` files
-- Keep API keys private
-- Use `.env.example` for variable templates
-- Validate all user inputs
-
----
-
-## 13. Deployment
-
-Frontend  
-- Vercel / Netlify
-
-Backend  
-- Render / Railway
-
-Database  
-- MongoDB Atlas
-
----
-
-## Summary
-
-CollabNation is a MERN stack application that helps innovators connect, collaborate, and build startup teams together.
-
-This project demonstrates:
-
-- Full-stack MERN development
-- Authentication systems
-- REST API design
-- Database relationships
-- Collaboration platform architecture
+- Add JWT auth controllers and routes
+- Replace sample startup controllers with MongoDB-backed queries
+- Add protected routes for dashboard and profile
+- Implement CRUD flows for startups and applications
