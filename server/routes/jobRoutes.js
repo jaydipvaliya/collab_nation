@@ -1,0 +1,1 @@
+export { jobRouter as default } from './allRoutes.js';
